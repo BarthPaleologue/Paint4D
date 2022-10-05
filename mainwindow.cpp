@@ -11,15 +11,15 @@ MainWindow::MainWindow(QWidget *parent)
     setMenuBar(menuBar);
     fileMenu = menuBar->addMenu(tr("&File"));
 
-    openAction = new QAction(QIcon(":/open.png"), tr("open"), this);
+    openAction = new QAction(QIcon(":/icons/open.png"), tr("open"), this);
     openAction->setToolTip("Open File");
     connect(openAction, SIGNAL(triggered()), this, SLOT(openFile()));
 
-    saveAction = new QAction(QIcon(":/save.png"), tr("save"), this);
+    saveAction = new QAction(QIcon(":/icons/save.png"), tr("save"), this);
     saveAction->setToolTip("Save file");
     connect(saveAction, SIGNAL(triggered()), this, SLOT(saveFile()));
 
-    quitAction = new QAction(QIcon(":/quit.png"), tr("quit"), this);
+    quitAction = new QAction(QIcon(":/icons/quit.png"), tr("quit"), this);
     quitAction->setToolTip("Quitter");
     connect(quitAction, SIGNAL(triggered()), this, SLOT(quitApp()));
 

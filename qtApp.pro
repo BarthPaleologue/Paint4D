@@ -36,4 +36,4 @@ DISTFILES += \
     icons/open.png
 
 RESOURCES += \
-    icons/copy.qrc
+    images.qrc
