@@ -10,11 +10,13 @@ CONFIG += c++17
 
 SOURCES += \
     canvas.cpp \
+    colormenu.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
     canvas.h \
+    colormenu.h \
     mainwindow.h
 
 FORMS += \

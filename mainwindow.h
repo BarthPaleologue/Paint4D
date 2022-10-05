@@ -3,14 +3,15 @@
 
 #include <QMainWindow>
 #include <QMenuBar>
-#include <QToolBar>
-#include <QTextEdit>
 #include <QAction>
 #include <QIcon>
 #include <QFileDialog>
 #include <QDialog>
 #include <fstream>
 #include <string>
+
+#include "canvas.h"
+#include "colormenu.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -33,11 +34,12 @@ private:
     Ui::MainWindow *ui;
     QMenuBar *menuBar;
     QMenu *fileMenu;
+    ColorMenu *colorMenu;
     QAction *openAction;
     QAction *saveAction;
     QAction *quitAction;
-    QToolBar *toolBar;
-    QTextEdit *textInput;
+
+    Canvas *canvas;
 
 };
 #endif // MAINWINDOW_H

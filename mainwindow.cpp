@@ -6,10 +6,14 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     //ui->setupUi(this);
+    setMinimumSize(400, 400);
     statusBar();
     menuBar = new QMenuBar(this);
     setMenuBar(menuBar);
     fileMenu = menuBar->addMenu(tr("&File"));
+
+    colorMenu = new ColorMenu(this);
+    menuBar->addMenu(colorMenu);
 
     openAction = new QAction(QIcon(":/icons/open.png"), tr("open"), this);
     openAction->setToolTip("Open File");
@@ -27,14 +31,11 @@ MainWindow::MainWindow(QWidget *parent)
     fileMenu->addAction(saveAction);
     fileMenu->addAction(quitAction);
 
-    toolBar = new QToolBar(this);
-    addToolBar(Qt::TopToolBarArea, toolBar);
-    toolBar->addAction(openAction);
-    toolBar->addAction(saveAction);
-    toolBar->addAction(quitAction);
+    canvas = new Canvas(this);
 
-    textInput = new QTextEdit("écrire ici...", this);
-    setCentralWidget(textInput);
+    connect(colorMenu->getActionGroup(), SIGNAL(triggered(QAction*)), canvas, SLOT(setColor(QAction*)));
+
+    setCentralWidget(canvas);
 }
 
 void MainWindow::openFile() {
@@ -53,8 +54,7 @@ void MainWindow::openFile() {
             }
             reader.close();
         }
-        textInput->setText(QString::fromStdString(stringBuffer));
-     }
+    }
 }
 
 void MainWindow::saveFile() {
@@ -62,7 +62,7 @@ void MainWindow::saveFile() {
     QFile file(filename);
     if (file.open(QIODevice::ReadWrite)) {
         QTextStream stream(&file);
-        stream << textInput->toPlainText() << Qt::endl;
+        file.close();
     }
 }
 
@@ -73,5 +73,11 @@ void MainWindow::quitApp() {
 MainWindow::~MainWindow()
 {
     delete ui;
+    delete menuBar;
+    delete fileMenu;
+    delete openAction;
+    delete saveAction;
+    delete quitAction;
+    delete canvas;
 }
 
