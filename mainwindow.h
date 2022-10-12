@@ -12,6 +12,8 @@
 
 #include "canvas.h"
 #include "colormenu.h"
+#include "thicknessmenu.h"
+#include "stylemenu.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -35,6 +37,8 @@ private:
     QMenuBar *menuBar;
     QMenu *fileMenu;
     ColorMenu *colorMenu;
+    ThicknessMenu *thicknessMenu;
+    StyleMenu *styleMenu;
     QAction *openAction;
     QAction *saveAction;
     QAction *quitAction;

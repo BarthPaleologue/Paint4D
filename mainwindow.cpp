@@ -10,10 +10,11 @@ MainWindow::MainWindow(QWidget *parent)
     statusBar();
     menuBar = new QMenuBar(this);
     setMenuBar(menuBar);
-    fileMenu = menuBar->addMenu(tr("&File"));
+    fileMenu = menuBar->addMenu(tr("&File"));    
 
-    colorMenu = new ColorMenu(this);
-    menuBar->addMenu(colorMenu);
+    fileMenu->addAction(openAction);
+    fileMenu->addAction(saveAction);
+    fileMenu->addAction(quitAction);
 
     openAction = new QAction(QIcon(":/icons/open.png"), tr("open"), this);
     openAction->setToolTip("Open File");
@@ -27,13 +28,22 @@ MainWindow::MainWindow(QWidget *parent)
     quitAction->setToolTip("Quitter");
     connect(quitAction, SIGNAL(triggered()), this, SLOT(quitApp()));
 
-    fileMenu->addAction(openAction);
-    fileMenu->addAction(saveAction);
-    fileMenu->addAction(quitAction);
+    colorMenu = new ColorMenu(this);
+    menuBar->addMenu(colorMenu);
+
+    thicknessMenu = new ThicknessMenu(this);
+    menuBar->addMenu(thicknessMenu);
+
+    styleMenu = new StyleMenu(this);
+    menuBar->addMenu(styleMenu);
 
     canvas = new Canvas(this);
 
     connect(colorMenu->getActionGroup(), SIGNAL(triggered(QAction*)), canvas, SLOT(setColor(QAction*)));
+
+    connect(thicknessMenu->getActionGroup(), SIGNAL(triggered(QAction*)), canvas, SLOT(setThickness(QAction*)));
+
+    connect(styleMenu->getActionGroup(), SIGNAL(triggered(QAction*)), canvas, SLOT(setStyle(QAction*)));
 
     setCentralWidget(canvas);
 }

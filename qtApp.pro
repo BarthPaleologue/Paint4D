@@ -12,12 +12,18 @@ SOURCES += \
     canvas.cpp \
     colormenu.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    shapemenu.cpp \
+    stylemenu.cpp \
+    thicknessmenu.cpp
 
 HEADERS += \
     canvas.h \
     colormenu.h \
-    mainwindow.h
+    mainwindow.h \
+    shapemenu.h \
+    stylemenu.h \
+    thicknessmenu.h
 
 FORMS += \
     mainwindow.ui
