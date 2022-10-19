@@ -14,6 +14,7 @@
 #include "colormenu.h"
 #include "thicknessmenu.h"
 #include "stylemenu.h"
+#include "shapemenu.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -35,10 +36,13 @@ public slots:
 private:
     Ui::MainWindow *ui;
     QMenuBar *menuBar;
+
     QMenu *fileMenu;
     ColorMenu *colorMenu;
     ThicknessMenu *thicknessMenu;
     StyleMenu *styleMenu;
+    ShapeMenu *shapeMenu;
+
     QAction *openAction;
     QAction *saveAction;
     QAction *quitAction;

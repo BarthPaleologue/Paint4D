@@ -54,6 +54,11 @@ void Canvas::setStyle(QAction* action) {
     update();
 }
 
+void Canvas::setShape(QAction* action) {
+    _shape = static_cast<ShapeEnum>(action->data().toInt());
+    update();
+}
+
 Canvas::~Canvas() {
 
 }

@@ -7,6 +7,9 @@
 #include <QPaintEvent>
 #include <QObject>
 
+#include "abstractshape.h"
+
+
 class Canvas: public QWidget
 {
     Q_OBJECT
@@ -25,11 +28,13 @@ public slots:
     void setColor(QAction* action);
     void setThickness(QAction* action);
     void setStyle(QAction* action);
+    void setShape(QAction* action);
 private:
     bool drawing = false;
     QPen *_pen;
     QPointF *_origin;
     QPointF *_destination;
+    enum ShapeEnum _shape;
 };
 
 #endif // CANVAS_H
