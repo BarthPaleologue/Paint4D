@@ -6,6 +6,7 @@
 #include <QMouseEvent>
 #include <QPaintEvent>
 #include <QObject>
+#include <vector>
 
 #include "abstractshape.h"
 
@@ -32,9 +33,8 @@ public slots:
 private:
     bool drawing = false;
     QPen *_pen;
-    QPointF *_origin;
-    QPointF *_destination;
     enum ShapeEnum _shape;
+    std::vector<AbstractShape*> _shapes{};
 };
 
 #endif // CANVAS_H

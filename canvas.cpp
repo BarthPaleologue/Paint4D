@@ -1,11 +1,10 @@
 #include "canvas.h"
+#include "line.h"
 
 Canvas::Canvas(QWidget *parent): QWidget(parent)
 {
     setMinimumSize(200, 200);
     _pen = new QPen(Qt::red);
-    _origin = new QPointF();
-    _destination = new QPointF();
 }
 
 void Canvas::paintEvent(QPaintEvent *e) {
@@ -14,27 +13,29 @@ void Canvas::paintEvent(QPaintEvent *e) {
     QPainter painter(this);
     painter.setPen(*_pen);
 
-    painter.drawLine(_origin->x(), _origin->y(), _destination->x(), _destination->y());
+    for(unsigned int i = 0; i < _shapes.size(); i++) {
+        _shapes[i]->draw(&painter);
+    }
 }
 
 void Canvas::mousePressEvent(QMouseEvent *e) {
     drawing = true;
-    *_origin = e->position();
-    *_destination = e->position();
+    _shapes.push_back(new Line());
+    AbstractShape *shape = _shapes[_shapes.size() - 1];
+    shape->setStartPoint(e->position());
+    shape->setEndPoint(e->position());
 
     update();
 }
 
 void Canvas::mouseReleaseEvent(QMouseEvent *e) {
     drawing = false;
-    *_destination = e->position();
-
     update();
 }
 
 void Canvas::mouseMoveEvent(QMouseEvent *e) {
     if(drawing) {
-        *_destination = e->position();
+        _shapes[_shapes.size() - 1]->setEndPoint(e->position());
         update();
     }
 }

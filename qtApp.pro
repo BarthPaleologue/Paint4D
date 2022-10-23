@@ -12,6 +12,7 @@ SOURCES += \
     abstractshape.cpp \
     canvas.cpp \
     colormenu.cpp \
+    line.cpp \
     main.cpp \
     mainwindow.cpp \
     shapemenu.cpp \
@@ -22,6 +23,7 @@ HEADERS += \
     abstractshape.h \
     canvas.h \
     colormenu.h \
+    line.h \
     mainwindow.h \
     shapemenu.h \
     stylemenu.h \
