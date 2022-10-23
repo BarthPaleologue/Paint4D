@@ -80,17 +80,23 @@ void Canvas::mouseMoveEvent(QMouseEvent *e) {
 }
 
 void Canvas::setColor(QAction* action) {
-    _pen.setColor(QColor(action->data().toString()));
+    QColor newColor = QColor(action->data().toString());
+    _pen.setColor(newColor);
+    if(_selectedShape != nullptr) _selectedShape->setColor(newColor);
     update();
 }
 
 void Canvas::setThickness(QAction* action) {
-    _pen.setWidth(action->data().toInt());
+    int newThickness = action->data().toInt();
+    _pen.setWidth(newThickness);
+    if(_selectedShape != nullptr) _selectedShape->setThickness(newThickness);
     update();
 }
 
 void Canvas::setStyle(QAction* action) {
-    _pen.setStyle(static_cast<Qt::PenStyle>(action->data().toInt()));
+    Qt::PenStyle newPenStyle = static_cast<Qt::PenStyle>(action->data().toInt());
+    _pen.setStyle(newPenStyle);
+    if(_selectedShape != nullptr) _selectedShape->setStyle(newPenStyle);
     update();
 }
 
