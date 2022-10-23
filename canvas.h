@@ -31,10 +31,13 @@ public slots:
     void setStyle(QAction* action);
     void setShape(QAction* action);
 private:
-    bool drawing = false;
+    bool isDrawing = false;
+    bool isSelecting = true;
     QPen _pen;
+    QPen _selectionPen;
     enum ShapeEnum _shape = LINE;
     std::vector<AbstractShape*> _shapes{};
+    AbstractShape* _selectedShape = nullptr;
 };
 
 #endif // CANVAS_H
