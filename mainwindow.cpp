@@ -1,3 +1,5 @@
+#include <QMessageBox>
+
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
@@ -82,7 +84,14 @@ void MainWindow::saveFile() {
 }
 
 void MainWindow::quitApp() {
-    exit(0);
+    QApplication::quit();
+}
+
+void MainWindow::closeEvent(QCloseEvent *event) {
+    event->ignore();
+    if (QMessageBox::Yes == QMessageBox::question(this, "Exiting", "Are you sure you want to quit the app ?", QMessageBox::Yes | QMessageBox::No)) {
+        event->accept();
+    }
 }
 
 MainWindow::~MainWindow()

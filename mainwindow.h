@@ -7,6 +7,7 @@
 #include <QIcon>
 #include <QFileDialog>
 #include <QDialog>
+#include <QCloseEvent>
 #include <fstream>
 #include <string>
 
@@ -26,6 +27,9 @@ class MainWindow : public QMainWindow
 
 public:
     MainWindow(QWidget *parent = nullptr);
+
+    void closeEvent(QCloseEvent *event);
+
     ~MainWindow();
 
 public slots:
