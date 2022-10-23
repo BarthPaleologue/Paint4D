@@ -6,6 +6,8 @@
 Canvas::Canvas(QWidget *parent): QWidget(parent)
 {
     setMinimumSize(800, 600);
+    setFocusPolicy(Qt::FocusPolicy::StrongFocus);
+
     _pen = QPen(Qt::red);
     _pen.setWidth(3);
 
@@ -76,6 +78,15 @@ void Canvas::mouseMoveEvent(QMouseEvent *e) {
     if(isDrawing) {
         _shapes[_shapes.size() - 1]->setEndPoint(e->position());
         update();
+    }
+}
+
+void Canvas::keyPressEvent(QKeyEvent *e) {
+    switch(e->key()) {
+        case Qt::Key::Key_Escape:
+            _selectedShape = nullptr;
+            update();
+            break;
     }
 }
 
