@@ -5,15 +5,15 @@
 
 Canvas::Canvas(QWidget *parent): QWidget(parent)
 {
-    setMinimumSize(200, 200);
-    _pen = new QPen(Qt::red);
+    setMinimumSize(800, 600);
+    _pen = QPen(Qt::red);
+    _pen.setWidth(3);
 }
 
 void Canvas::paintEvent(QPaintEvent *e) {
     QWidget::paintEvent(e);
 
     QPainter painter(this);
-    painter.setPen(*_pen);
 
     for(unsigned int i = 0; i < _shapes.size(); i++) {
         _shapes[i]->draw(&painter);
@@ -25,13 +25,13 @@ void Canvas::mousePressEvent(QMouseEvent *e) {
     AbstractShape* newShape;
     switch(_shape) {
         case LINE:
-            newShape = new Line(*_pen);
+            newShape = new Line(_pen);
             break;
         case RECTANGLE:
-            newShape = new Rectangle(*_pen);
+            newShape = new Rectangle(_pen);
             break;
         case ELLIPSE:
-            newShape = new Ellipse(*_pen);
+            newShape = new Ellipse(_pen);
             break;
     }
 
@@ -56,17 +56,17 @@ void Canvas::mouseMoveEvent(QMouseEvent *e) {
 }
 
 void Canvas::setColor(QAction* action) {
-    _pen->setColor(QColor(action->data().toString()));
+    _pen.setColor(QColor(action->data().toString()));
     update();
 }
 
 void Canvas::setThickness(QAction* action) {
-    _pen->setWidth(action->data().toInt());
+    _pen.setWidth(action->data().toInt());
     update();
 }
 
 void Canvas::setStyle(QAction* action) {
-    _pen->setStyle(static_cast<Qt::PenStyle>(action->data().toInt()));
+    _pen.setStyle(static_cast<Qt::PenStyle>(action->data().toInt()));
     update();
 }
 

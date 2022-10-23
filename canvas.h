@@ -32,7 +32,7 @@ public slots:
     void setShape(QAction* action);
 private:
     bool drawing = false;
-    QPen *_pen;
+    QPen _pen;
     enum ShapeEnum _shape = LINE;
     std::vector<AbstractShape*> _shapes{};
 };
