@@ -76,5 +76,8 @@ void Canvas::setShape(QAction* action) {
 }
 
 Canvas::~Canvas() {
-
+    for(auto shape: _shapes) {
+        delete shape;
+    }
+    _shapes.clear();
 }

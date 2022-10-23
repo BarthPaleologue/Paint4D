@@ -25,7 +25,7 @@ public:
 
     inline virtual void draw(QPainter *painter) { painter->setPen(_pen); };
 
-    ~AbstractShape();
+    virtual ~AbstractShape();
 protected:
     QPointF _startPoint = QPointF(0, 0);
     QPointF _endPoint = QPointF(0, 0);
