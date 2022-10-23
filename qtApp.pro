@@ -15,6 +15,7 @@ SOURCES += \
     line.cpp \
     main.cpp \
     mainwindow.cpp \
+    rectangle.cpp \
     shapemenu.cpp \
     stylemenu.cpp \
     thicknessmenu.cpp
@@ -25,6 +26,7 @@ HEADERS += \
     colormenu.h \
     line.h \
     mainwindow.h \
+    rectangle.h \
     shapemenu.h \
     stylemenu.h \
     thicknessmenu.h

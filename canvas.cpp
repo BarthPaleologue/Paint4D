@@ -1,5 +1,6 @@
 #include "canvas.h"
 #include "line.h"
+#include "rectangle.h"
 
 Canvas::Canvas(QWidget *parent): QWidget(parent)
 {
@@ -20,10 +21,20 @@ void Canvas::paintEvent(QPaintEvent *e) {
 
 void Canvas::mousePressEvent(QMouseEvent *e) {
     drawing = true;
-    _shapes.push_back(new Line());
-    AbstractShape *shape = _shapes[_shapes.size() - 1];
-    shape->setStartPoint(e->position());
-    shape->setEndPoint(e->position());
+    AbstractShape* newShape;
+    switch(_shape) {
+        case LINE:
+            newShape = new Line();
+            break;
+        case RECTANGLE:
+            newShape = new Rectangle();
+            break;
+    }
+
+    newShape->setStartPoint(e->position());
+    newShape->setEndPoint(e->position());
+
+    _shapes.push_back(newShape);
 
     update();
 }
