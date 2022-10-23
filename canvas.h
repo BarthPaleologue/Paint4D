@@ -52,6 +52,9 @@ private:
 
     void removeShape(AbstractShape* shape);
 
+    float mouseLastX = 0.0;
+    float mouseLastY = 0.0;
+
     bool isDrawing = false;
     bool isSelecting = true;
     bool isShiftPressed = false;

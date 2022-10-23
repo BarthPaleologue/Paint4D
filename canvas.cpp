@@ -43,6 +43,9 @@ void Canvas::paintEvent(QPaintEvent *e) {
 }
 
 void Canvas::mousePressEvent(QMouseEvent *e) {
+    mouseLastX = e->position().x();
+    mouseLastY = e->position().y();
+
     if(isSelecting) {
         for(auto shape : _shapes) {
             if(shape->getBoundingRect().contains(e->pos())) {
@@ -86,7 +89,7 @@ void Canvas::mouseReleaseEvent(QMouseEvent *e) {
 
 void Canvas::mouseMoveEvent(QMouseEvent *e) {
     for(auto _selectedShape : _selectedShapes) {
-        _selectedShape->setPosition(e->position());
+        _selectedShape->translate(e->position().x() - mouseLastX, e->position().y() - mouseLastY);
     }
     if(_selectedShapes.size() > 0) update();
 
@@ -94,6 +97,9 @@ void Canvas::mouseMoveEvent(QMouseEvent *e) {
         _shapes[_shapes.size() - 1]->setEndPoint(e->position());
         update();
     }
+
+    mouseLastX = e->position().x();
+    mouseLastY = e->position().y();
 }
 
 void Canvas::keyPressEvent(QKeyEvent *e) {
