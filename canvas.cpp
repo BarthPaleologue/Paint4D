@@ -70,8 +70,8 @@ void Canvas::mouseReleaseEvent(QMouseEvent *e) {
 
 void Canvas::mouseMoveEvent(QMouseEvent *e) {
     if(_selectedShape != nullptr) {
-        QPointF center = _selectedShape->getBoundingRect().center();
-        QPointF newCenter = e->position();
+        _selectedShape->setPosition(e->position());
+        update();
     }
     if(isDrawing) {
         _shapes[_shapes.size() - 1]->setEndPoint(e->position());

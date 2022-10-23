@@ -21,6 +21,10 @@ public:
 
     inline void setEndPoint(QPointF point) { _endPoint = point; };
 
+    void translate(float dx, float dy);
+
+    void setPosition(QPointF position);
+
     inline QRectF getBoundingRect() { return QRectF(_startPoint, _endPoint); };
 
     inline virtual void draw(QPainter *painter) { painter->setPen(_pen); };
