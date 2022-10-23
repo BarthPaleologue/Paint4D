@@ -17,6 +17,16 @@ Canvas::Canvas(QWidget *parent): QWidget(parent)
     _selectionPen.setColor(QColor::fromCmyk(255, 0, 0, 128));
 }
 
+void Canvas::removeShape(AbstractShape* shape) {
+    for(unsigned int i = 0; i < _shapes.size(); i++) {
+        if(_shapes[i] == shape) {
+            _shapes.erase(_shapes.begin() + i);
+            break;
+        }
+    }
+    delete shape;
+}
+
 void Canvas::paintEvent(QPaintEvent *e) {
     QWidget::paintEvent(e);
 
@@ -26,7 +36,7 @@ void Canvas::paintEvent(QPaintEvent *e) {
         _shapes[i]->draw(&painter);
     }
 
-    if(_selectedShape != nullptr) {
+    for(auto _selectedShape : _selectedShapes) {
         painter.setPen(_selectionPen);
         painter.drawRect(_selectedShape->getBoundingRect());
     }
@@ -36,11 +46,15 @@ void Canvas::mousePressEvent(QMouseEvent *e) {
     if(isSelecting) {
         for(auto shape : _shapes) {
             if(shape->getBoundingRect().contains(e->pos())) {
-                _selectedShape = shape;
+                for(auto selectedShape: _selectedShapes) {
+                    if(selectedShape == shape) return;
+                }
+                if(!isShiftPressed) _selectedShapes.clear();
+                _selectedShapes.push_back(shape);
                 return;
             }
         }
-        _selectedShape = nullptr;
+        _selectedShapes.clear();
     }
 
     isDrawing = true;
@@ -71,10 +85,11 @@ void Canvas::mouseReleaseEvent(QMouseEvent *e) {
 }
 
 void Canvas::mouseMoveEvent(QMouseEvent *e) {
-    if(_selectedShape != nullptr) {
+    for(auto _selectedShape : _selectedShapes) {
         _selectedShape->setPosition(e->position());
-        update();
     }
+    if(_selectedShapes.size() > 0) update();
+
     if(isDrawing) {
         _shapes[_shapes.size() - 1]->setEndPoint(e->position());
         update();
@@ -84,8 +99,24 @@ void Canvas::mouseMoveEvent(QMouseEvent *e) {
 void Canvas::keyPressEvent(QKeyEvent *e) {
     switch(e->key()) {
         case Qt::Key::Key_Escape:
-            _selectedShape = nullptr;
+            _selectedShapes.clear();
             update();
+            break;
+        case Qt::Key::Key_Shift:
+            isShiftPressed = true;
+            break;
+        case Qt::Key::Key_Delete:
+            for(auto selectedShape: _selectedShapes) removeShape(selectedShape);
+            _selectedShapes.clear();
+            update();
+            break;
+    }
+}
+
+void Canvas::keyReleaseEvent(QKeyEvent *e) {
+    switch(e->key()) {
+        case Qt::Key::Key_Shift:
+            isShiftPressed = false;
             break;
     }
 }
@@ -93,21 +124,21 @@ void Canvas::keyPressEvent(QKeyEvent *e) {
 void Canvas::setColor(QAction* action) {
     QColor newColor = QColor(action->data().toString());
     _pen.setColor(newColor);
-    if(_selectedShape != nullptr) _selectedShape->setColor(newColor);
+    for(auto _selectedShape : _selectedShapes) _selectedShape->setColor(newColor);
     update();
 }
 
 void Canvas::setThickness(QAction* action) {
     int newThickness = action->data().toInt();
     _pen.setWidth(newThickness);
-    if(_selectedShape != nullptr) _selectedShape->setThickness(newThickness);
+    for(auto _selectedShape : _selectedShapes) _selectedShape->setThickness(newThickness);
     update();
 }
 
 void Canvas::setStyle(QAction* action) {
     Qt::PenStyle newPenStyle = static_cast<Qt::PenStyle>(action->data().toInt());
     _pen.setStyle(newPenStyle);
-    if(_selectedShape != nullptr) _selectedShape->setStyle(newPenStyle);
+    for(auto _selectedShape : _selectedShapes) _selectedShape->setStyle(newPenStyle);
     update();
 }
 

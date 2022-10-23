@@ -26,7 +26,9 @@ public:
 
     void mouseMoveEvent(QMouseEvent* e);
 
-    void keyPressEvent(QKeyEvent * event);
+    void keyPressEvent(QKeyEvent * e);
+
+    void keyReleaseEvent(QKeyEvent *e);
 
     ~Canvas();
 
@@ -48,13 +50,18 @@ public slots:
 
 private:
 
+    void removeShape(AbstractShape* shape);
+
     bool isDrawing = false;
     bool isSelecting = true;
+    bool isShiftPressed = false;
+
     QPen _pen;
     QPen _selectionPen;
+
     enum ShapeEnum _shape = LINE;
     std::vector<AbstractShape*> _shapes{};
-    AbstractShape* _selectedShape = nullptr;
+    std::vector<AbstractShape*> _selectedShapes{};
 };
 
 #endif // CANVAS_H
