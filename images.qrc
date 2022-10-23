@@ -13,5 +13,8 @@
         <file>icons/blue.png</file>
         <file>icons/red.png</file>
         <file>icons/green.png</file>
+        <file>icons/dotline.png</file>
+        <file>icons/dashedline.png</file>
+        <file>icons/fullline.png</file>
     </qresource>
 </RCC>

@@ -3,11 +3,11 @@
 StyleMenu::StyleMenu(QWidget *parent): QMenu(tr("Style"), parent)
 {
     group = new QActionGroup(this);
-    normal = new QAction(tr("&normal"), this);
+    normal = new QAction(QIcon(":/icons/fullline.png"), tr("&normal"), this);
     normal->setData(QVariant(static_cast<int>(Qt::SolidLine)));
-    dashed = new QAction(tr("&dashes"), this);
+    dashed = new QAction(QIcon(":/icons/dashedline.png"), tr("&dashes"), this);
     dashed->setData(QVariant(static_cast<int>(Qt::DashLine)));
-    dots = new QAction(tr("&dots"), this);
+    dots = new QAction(QIcon(":/icons/dotline.png"), tr("&dots"), this);
     dots->setData(QVariant(static_cast<int>(Qt::DotLine)));
 
     group->addAction(normal);

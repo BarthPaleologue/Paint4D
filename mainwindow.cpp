@@ -18,14 +18,12 @@ MainWindow::MainWindow(QWidget *parent)
     toolBar->setMovable(false);
     addToolBar(Qt::ToolBarArea::TopToolBarArea, toolBar);
 
-    fileMenu = menuBar->addMenu(tr("&File"));    
+    fileMenu = menuBar->addMenu(tr("&File"));
 
     openAction = new QAction(QIcon(":/icons/open.png"), tr("open"), this);
-    openAction->setToolTip("Open File");
     connect(openAction, SIGNAL(triggered()), this, SLOT(openFile()));
 
     saveAction = new QAction(QIcon(":/icons/save.png"), tr("save"), this);
-    saveAction->setToolTip("Save file");
     connect(saveAction, SIGNAL(triggered()), this, SLOT(saveFile()));
 
     quitAction = new QAction(QIcon(":/icons/quit.png"), tr("quit"), this);
@@ -50,6 +48,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     toolBar->addActions(shapeMenu->getActionGroup()->actions());
     toolBar->addActions(colorMenu->getActionGroup()->actions());
+    toolBar->addActions(styleMenu->getActionGroup()->actions());
 
     canvas = new Canvas(this);
 
