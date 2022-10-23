@@ -6,6 +6,7 @@ Ellipse::Ellipse()
 }
 
 void Ellipse::draw(QPainter* painter) {
-    painter->drawEllipse(*getBoundingRect());
+    AbstractShape::draw(painter);
+    painter->drawEllipse(getBoundingRect());
 }
 

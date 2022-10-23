@@ -6,5 +6,6 @@ Rectangle::Rectangle()
 }
 
 void Rectangle::draw(QPainter* painter) {
-    painter->drawRect(*getBoundingRect());
+    AbstractShape::draw(painter);
+    painter->drawRect(getBoundingRect());
 }
