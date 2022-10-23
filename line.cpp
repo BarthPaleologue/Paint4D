@@ -1,7 +1,10 @@
 #include "line.h"
 
-Line::Line(): AbstractShape()
-{
+Line::Line(): AbstractShape() {
+
+}
+
+Line::Line(QPen pen): AbstractShape(pen) {
 
 }
 

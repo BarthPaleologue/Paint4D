@@ -25,13 +25,13 @@ void Canvas::mousePressEvent(QMouseEvent *e) {
     AbstractShape* newShape;
     switch(_shape) {
         case LINE:
-            newShape = new Line();
+            newShape = new Line(*_pen);
             break;
         case RECTANGLE:
-            newShape = new Rectangle();
+            newShape = new Rectangle(*_pen);
             break;
         case ELLIPSE:
-            newShape = new Ellipse();
+            newShape = new Ellipse(*_pen);
             break;
     }
 

@@ -1,7 +1,10 @@
 #include "rectangle.h"
 
-Rectangle::Rectangle()
-{
+Rectangle::Rectangle(): AbstractShape() {
+
+}
+
+Rectangle::Rectangle(QPen pen): AbstractShape(pen) {
 
 }
 

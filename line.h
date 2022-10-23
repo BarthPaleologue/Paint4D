@@ -8,6 +8,9 @@ class Line : public AbstractShape
 {
 public:
     Line();
+
+    Line(QPen pen);
+
     void draw(QPainter* painter) override;
 };
 

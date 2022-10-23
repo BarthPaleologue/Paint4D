@@ -1,7 +1,10 @@
 #include "ellipse.h"
 
-Ellipse::Ellipse()
-{
+Ellipse::Ellipse(): AbstractShape() {
+
+}
+
+Ellipse::Ellipse(QPen pen): AbstractShape(pen) {
 
 }
 

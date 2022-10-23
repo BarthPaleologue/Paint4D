@@ -7,6 +7,9 @@ class Ellipse : public AbstractShape
 {
 public:
     Ellipse();
+
+    Ellipse(QPen pen);
+
     void draw(QPainter* painter) override;
 };
 

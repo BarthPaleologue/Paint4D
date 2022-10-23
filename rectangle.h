@@ -7,6 +7,9 @@ class Rectangle : public AbstractShape
 {
 public:
     Rectangle();
+
+    Rectangle(QPen pen);
+
     void draw(QPainter* painter) override;
 };
 

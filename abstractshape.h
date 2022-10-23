@@ -15,6 +15,8 @@ class AbstractShape
 public:
     AbstractShape();
 
+    AbstractShape(QPen pen);
+
     inline void setStartPoint(QPointF point) { _startPoint = point; };
 
     inline void setEndPoint(QPointF point) { _endPoint = point; };
@@ -27,7 +29,7 @@ public:
 protected:
     QPointF _startPoint = QPointF(0, 0);
     QPointF _endPoint = QPointF(0, 0);
-    QPen _pen = QPen();
+    QPen _pen;
 };
 
 #endif // ABSTRACTSHAPE_H
