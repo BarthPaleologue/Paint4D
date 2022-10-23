@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QMenuBar>
+#include <QToolBar>
 #include <QAction>
 #include <QIcon>
 #include <QFileDialog>
@@ -39,7 +40,9 @@ public slots:
 
 private:
     Ui::MainWindow *ui;
+
     QMenuBar *menuBar;
+    QToolBar *toolBar;
 
     QMenu *fileMenu;
     ColorMenu *colorMenu;

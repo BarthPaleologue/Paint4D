@@ -10,8 +10,14 @@ MainWindow::MainWindow(QWidget *parent)
     //ui->setupUi(this);
     setMinimumSize(400, 400);
     statusBar();
+
     menuBar = new QMenuBar(this);
     setMenuBar(menuBar);
+
+    toolBar = new QToolBar(this);
+    toolBar->setMovable(false);
+    addToolBar(Qt::ToolBarArea::TopToolBarArea, toolBar);
+
     fileMenu = menuBar->addMenu(tr("&File"));    
 
     openAction = new QAction(QIcon(":/icons/open.png"), tr("open"), this);
@@ -41,6 +47,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     shapeMenu = new ShapeMenu(this);
     menuBar->addMenu(shapeMenu);
+
+    toolBar->addActions(shapeMenu->getActionGroup()->actions());
 
     canvas = new Canvas(this);
 
