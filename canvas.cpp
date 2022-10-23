@@ -1,6 +1,7 @@
 #include "canvas.h"
 #include "line.h"
 #include "rectangle.h"
+#include "ellipse.h"
 
 Canvas::Canvas(QWidget *parent): QWidget(parent)
 {
@@ -28,6 +29,9 @@ void Canvas::mousePressEvent(QMouseEvent *e) {
             break;
         case RECTANGLE:
             newShape = new Rectangle();
+            break;
+        case ELLIPSE:
+            newShape = new Ellipse();
             break;
     }
 

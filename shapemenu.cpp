@@ -9,7 +9,7 @@ ShapeMenu::ShapeMenu(QWidget *parent): QMenu(tr("Shape"), parent)
     rectangle = new QAction(tr("&rectangle"), this);
     rectangle->setData(QVariant(static_cast<int>(ShapeEnum::RECTANGLE)));
     ellipse = new QAction(tr("&ellipse"), this);
-    ellipse->setData(QVariant(static_cast<int>(ShapeEnum::LINE)));
+    ellipse->setData(QVariant(static_cast<int>(ShapeEnum::ELLIPSE)));
 
     group->addAction(line);
     group->addAction(rectangle);

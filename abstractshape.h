@@ -3,6 +3,7 @@
 
 #include <QPointF>
 #include <QPainter>
+#include <QRectF>
 
 enum ShapeEnum {
     LINE, RECTANGLE, ELLIPSE
@@ -14,6 +15,7 @@ public:
     AbstractShape();
     inline void setStartPoint(QPointF point) { _startPoint->setX(point.x()); _startPoint->setY(point.y()); };
     inline void setEndPoint(QPointF point) { _endPoint->setX(point.x()); _endPoint->setY(point.y()); };
+    QRectF* getBoundingRect();
     inline virtual void draw(QPainter *painter) {};
     ~AbstractShape();
 protected:
