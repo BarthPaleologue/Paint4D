@@ -3,11 +3,11 @@
 ColorMenu::ColorMenu(QWidget *parent): QMenu(tr("&Color"), parent)
 {
     group = new QActionGroup(this);
-    red = new QAction(tr("&red"), this);
+    red = new QAction(QIcon(":/icons/red.png"), tr("&red"), this);
     red->setData(QVariant(QColor(Qt::red)));
-    green = new QAction(tr("&green"), this);
+    green = new QAction(QIcon(":/icons/green.png"), tr("&green"), this);
     green->setData(QVariant(QColor(Qt::green)));
-    blue = new QAction(tr("&blue"), this);
+    blue = new QAction(QIcon(":/icons/blue.png"), tr("&blue"), this);
     blue->setData(QVariant(QColor(Qt::blue)));
 
     group->addAction(red);

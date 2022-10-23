@@ -49,6 +49,7 @@ MainWindow::MainWindow(QWidget *parent)
     menuBar->addMenu(shapeMenu);
 
     toolBar->addActions(shapeMenu->getActionGroup()->actions());
+    toolBar->addActions(colorMenu->getActionGroup()->actions());
 
     canvas = new Canvas(this);
 

@@ -10,5 +10,8 @@
         <file>icons/rectangle.png</file>
         <file>icons/ellipse.png</file>
         <file>icons/line.png</file>
+        <file>icons/blue.png</file>
+        <file>icons/red.png</file>
+        <file>icons/green.png</file>
     </qresource>
 </RCC>
