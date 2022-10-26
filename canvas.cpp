@@ -52,7 +52,14 @@ void Canvas::mousePressEvent(QMouseEvent *e) {
                 for(auto selectedShape: _selectedShapes) {
                     if(selectedShape == shape) return;
                 }
-                if(!isShiftPressed) _selectedShapes.clear();
+                if(!isShiftPressed) {
+                    _selectedShapes.clear();
+                    emit updateScale((int)(shape->getScale() * 10));
+                    emit updateRed(shape->getColor().red());
+                    emit updateGreen(shape->getColor().green());
+                    emit updateBlue(shape->getColor().blue());
+                    emit updateAlpha(shape->getColor().alpha());
+                }
                 _selectedShapes.push_back(shape);
                 return;
             }
@@ -134,6 +141,7 @@ void Canvas::keyReleaseEvent(QKeyEvent *e) {
 
 void Canvas::wheelEvent(QWheelEvent* e) {
     increaseScaleSelected((float)e->angleDelta().y() / 500.0f);
+    if(_selectedShapes.size() == 1) emit updateScale((int)(_selectedShapes[0]->getScale() * 10));
     update();
 }
 
@@ -147,7 +155,12 @@ void Canvas::setSelectedShapesColorToCurrentPenColor() {
 }
 
 void Canvas::setColor(QAction* action) {
-    _pen.setColor(QColor(action->data().toString()));
+    QColor newColor = QColor(action->data().toString());
+    _pen.setColor(newColor);
+    emit updateRed(newColor.red());
+    emit updateGreen(newColor.green());
+    emit updateBlue(newColor.blue());
+    emit updateAlpha(newColor.alpha());
     setSelectedShapesColorToCurrentPenColor();
 }
 

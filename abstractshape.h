@@ -43,6 +43,8 @@ public:
 
     inline QPointF getCenter() { return (_startPoint + _endPoint) / 2.0; };
 
+    inline QColor getColor() { return _pen.color(); };
+
     inline virtual void draw(QPainter *painter) { painter->setPen(_pen); };
 
     virtual ~AbstractShape();

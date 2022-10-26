@@ -72,6 +72,16 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(findChild<QWidget*>("alphaSlider"), SIGNAL(valueChanged(int)), canvas, SLOT(setAlpha(int)));
 
+    connect(canvas, SIGNAL(updateScale(int)), findChild<QWidget*>("scaleSlider"), SLOT(setValue(int)));
+
+    connect(canvas, SIGNAL(updateRed(int)), findChild<QWidget*>("redSlider"), SLOT(setValue(int)));
+
+    connect(canvas, SIGNAL(updateGreen(int)), findChild<QWidget*>("greenSlider"), SLOT(setValue(int)));
+
+    connect(canvas, SIGNAL(updateBlue(int)), findChild<QWidget*>("blueSlider"), SLOT(setValue(int)));
+
+    connect(canvas, SIGNAL(updateAlpha(int)), findChild<QWidget*>("alphaSlider"), SLOT(setValue(int)));
+
     setCentralWidget(centralWidget);
 }
 

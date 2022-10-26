@@ -63,6 +63,13 @@ public slots:
 
     void setShape(QAction* action);
 
+signals:
+    void updateScale(int);
+    void updateRed(int);
+    void updateGreen(int);
+    void updateBlue(int);
+    void updateAlpha(int);
+
 private:
 
     void removeShape(AbstractShape* shape);
