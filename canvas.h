@@ -5,6 +5,7 @@
 #include <QPainter>
 #include <QMouseEvent>
 #include <QKeyEvent>
+#include <QWheelEvent>
 #include <QPaintEvent>
 #include <QObject>
 #include <vector>
@@ -31,6 +32,8 @@ public:
     void keyPressEvent(QKeyEvent * e);
 
     void keyReleaseEvent(QKeyEvent *e);
+
+    void wheelEvent(QWheelEvent* e);
 
     ~Canvas();
 
@@ -63,6 +66,8 @@ public slots:
 private:
 
     void removeShape(AbstractShape* shape);
+
+    void increaseScaleSelected(float addScale);
 
     float mouseLastX = 0.0;
     float mouseLastY = 0.0;

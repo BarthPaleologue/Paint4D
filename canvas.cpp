@@ -131,6 +131,16 @@ void Canvas::keyReleaseEvent(QKeyEvent *e) {
     }
 }
 
+
+void Canvas::wheelEvent(QWheelEvent* e) {
+    increaseScaleSelected((float)e->angleDelta().y() / 500.0f);
+    update();
+}
+
+void Canvas::increaseScaleSelected(float addScale) {
+    for(auto selectedShape: _selectedShapes) selectedShape->setScale(selectedShape->getScale() + addScale);
+}
+
 void Canvas::setSelectedShapesColorToCurrentPenColor() {
     for(auto _selectedShape : _selectedShapes) _selectedShape->setColor(_pen.color());
     update();

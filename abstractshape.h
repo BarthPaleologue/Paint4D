@@ -35,7 +35,9 @@ public:
 
     inline void setStyle(Qt::PenStyle style) { _pen.setStyle(style); };
 
-    inline void setScale(float scale) { _scale = scale; };
+    inline void setScale(float scale) { _scale = std::max(scale, 0.1f); };
+
+    inline float getScale() { return _scale; };
 
     inline QRectF getBoundingRect() { return QRectF(getStartPoint(), getEndPoint()); };
 
