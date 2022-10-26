@@ -113,9 +113,10 @@ void MainWindow::openFile() {
 void MainWindow::saveFile() {
     QString filename = "./Data.txt";
     QFile file(filename);
-    if (file.open(QIODevice::ReadWrite)) {
+    if (file.open(QIODevice::WriteOnly)) {
+        file.resize(0);
         QTextStream stream(&file);
-        stream << "Contenu:" << canvas->serialize().c_str();
+        stream << canvas->serialize().c_str();
         file.flush();
         file.close();
     }
