@@ -4,6 +4,8 @@ Author: Barthélemy Paléologue
 
 Paint4D is the result of the Qt TP at Telecom Paris.
 
+<img src="./coverImages/cover.png"/>
+
 ## Features
 
 ### Shapes
