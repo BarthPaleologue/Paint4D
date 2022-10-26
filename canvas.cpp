@@ -83,7 +83,11 @@ void Canvas::mousePressEvent(QMouseEvent *e) {
 }
 
 void Canvas::mouseReleaseEvent(QMouseEvent *e) {
-    isDrawing = false;
+    if(isDrawing) {
+        isDrawing = false;
+        _selectedShapes.clear();
+        _selectedShapes.push_back(_shapes[_shapes.size() - 1]);
+    }
     update();
 }
 

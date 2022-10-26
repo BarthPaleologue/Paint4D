@@ -54,6 +54,8 @@ private:
     QAction *saveAction;
     QAction *quitAction;
 
+    QWidget* centralWidget;
+
     Canvas *canvas;
 
 };

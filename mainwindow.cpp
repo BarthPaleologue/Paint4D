@@ -7,7 +7,7 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
-    //ui->setupUi(this);
+    ui->setupUi(this);
     setMinimumSize(400, 400);
     statusBar();
 
@@ -50,7 +50,9 @@ MainWindow::MainWindow(QWidget *parent)
     toolBar->addActions(colorMenu->getActionGroup()->actions());
     toolBar->addActions(styleMenu->getActionGroup()->actions());
 
-    canvas = new Canvas(this);
+    centralWidget = findChild<QWidget*>("centralwidget");
+
+    canvas = new Canvas(centralWidget);
 
     connect(colorMenu->getActionGroup(), SIGNAL(triggered(QAction*)), canvas, SLOT(setColor(QAction*)));
 
@@ -60,7 +62,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(shapeMenu->getActionGroup(), SIGNAL(triggered(QAction*)), canvas, SLOT(setShape(QAction*)));
 
-    setCentralWidget(canvas);
+    setCentralWidget(centralWidget);
 }
 
 void MainWindow::openFile() {
