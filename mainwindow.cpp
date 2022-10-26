@@ -1,4 +1,5 @@
 #include <QMessageBox>
+#include <iostream>
 
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
@@ -46,8 +47,13 @@ MainWindow::MainWindow(QWidget *parent)
     shapeMenu = new ShapeMenu(this);
     menuBar->addMenu(shapeMenu);
 
+    toolBar->addAction(openAction);
+    toolBar->addAction(saveAction);
+    toolBar->addSeparator();
     toolBar->addActions(shapeMenu->getActionGroup()->actions());
+    toolBar->addSeparator();
     toolBar->addActions(colorMenu->getActionGroup()->actions());
+    toolBar->addSeparator();
     toolBar->addActions(styleMenu->getActionGroup()->actions());
 
     centralWidget = findChild<QWidget*>("centralwidget");
@@ -105,10 +111,12 @@ void MainWindow::openFile() {
 }
 
 void MainWindow::saveFile() {
-    QString filename = "Data.txt";
+    QString filename = "./Data.txt";
     QFile file(filename);
     if (file.open(QIODevice::ReadWrite)) {
         QTextStream stream(&file);
+        stream << "Contenu:" << canvas->serialize().c_str();
+        file.flush();
         file.close();
     }
 }

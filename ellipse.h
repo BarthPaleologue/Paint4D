@@ -10,6 +10,8 @@ public:
 
     Ellipse(QPen pen);
 
+    std::string serialize() override;
+
     void draw(QPainter* painter) override;
 };
 

@@ -9,6 +9,7 @@
 #include <QPaintEvent>
 #include <QObject>
 #include <vector>
+#include <string>
 
 #include "abstractshape.h"
 
@@ -20,6 +21,10 @@ class Canvas: public QWidget {
 public:
 
     Canvas(QWidget *parent = nullptr);
+
+    void deserialize();
+
+    std::string serialize();
 
     void setSelectedShapesColorToCurrentPenColor();
 

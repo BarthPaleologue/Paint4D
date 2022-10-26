@@ -22,6 +22,16 @@ void AbstractShape::setPosition(QPointF position) {
     translate(-currentPosition.x() + position.x(), -currentPosition.y() + position.y());
 }
 
+std::string AbstractShape::serialize() {
+    std::string result = "";
+    result += std::to_string(_startPoint.x()) + " ";
+    result += std::to_string(_startPoint.y()) + " ";
+    result += std::to_string(_endPoint.x()) + " ";
+    result += std::to_string(_endPoint.y()) + " ";
+    result += std::to_string(_scale) + " ";
+    return result;
+}
+
 AbstractShape::~AbstractShape() {
 
 }

@@ -17,6 +17,14 @@ Canvas::Canvas(QWidget *parent): QWidget(parent)
     _selectionPen.setColor(QColor::fromCmyk(255, 0, 0, 128));
 }
 
+std::string Canvas::serialize() {
+    std::string result = "";
+    for(auto shape: _shapes) {
+        result += shape->serialize() + "\n";
+    }
+    return result;
+}
+
 void Canvas::removeShape(AbstractShape* shape) {
     for(unsigned int i = 0; i < _shapes.size(); i++) {
         if(_shapes[i] == shape) {

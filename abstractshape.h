@@ -5,6 +5,7 @@
 #include <QPainter>
 #include <QRectF>
 #include <QPen>
+#include <string>
 
 enum ShapeEnum {
     LINE, RECTANGLE, ELLIPSE
@@ -44,6 +45,8 @@ public:
     inline QPointF getCenter() { return (_startPoint + _endPoint) / 2.0; };
 
     inline QColor getColor() { return _pen.color(); };
+
+    virtual std::string serialize();
 
     inline virtual void draw(QPainter *painter) { painter->setPen(_pen); };
 
