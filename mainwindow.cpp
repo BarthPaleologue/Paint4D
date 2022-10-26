@@ -95,15 +95,14 @@ void MainWindow::openFile() {
      QFileDialog * dialog = new QFileDialog(this);
      QStringList fileNames;
 
-     if (dialog->exec( ) == QDialog::Accepted) {
+     if (dialog->exec() == QDialog::Accepted) {
         fileNames = dialog->selectedFiles();
         QString filename = fileNames[0];
-        std::string stringBuffer = "";
         std::ifstream reader(filename.toStdString());
         if (reader.is_open()) {
             std::string lineBuffer;
             while (std::getline(reader, lineBuffer)) {
-                stringBuffer += lineBuffer + "\n";
+                canvas->deserialize(lineBuffer);
             }
             reader.close();
         }
@@ -111,7 +110,10 @@ void MainWindow::openFile() {
 }
 
 void MainWindow::saveFile() {
-    QString filename = "./Data.txt";
+    QString filename = QFileDialog::getSaveFileName(this, tr("Save File"),
+                                "./untitled.txt",
+                                tr("Text (*.txt)"));
+
     QFile file(filename);
     if (file.open(QIODevice::WriteOnly)) {
         file.resize(0);

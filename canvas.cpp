@@ -3,6 +3,8 @@
 #include "rectangle.h"
 #include "ellipse.h"
 
+#include <iostream>
+
 Canvas::Canvas(QWidget *parent): QWidget(parent)
 {
     setMinimumSize(800, 600);
@@ -23,6 +25,66 @@ std::string Canvas::serialize() {
         result += shape->serialize() + "\n";
     }
     return result;
+}
+
+void Canvas::deserialize(std::string serialized) {
+    int cursor;
+
+    std::string shapeType = "";
+    for(cursor = 0; serialized.at(cursor) != ' '; cursor++) shapeType += serialized[cursor];
+
+    std::string startXStr = "";
+    for(cursor++; serialized.at(cursor) != ' '; cursor++) startXStr += serialized[cursor];
+
+    std::string startYStr = "";
+    for(cursor++; serialized.at(cursor) != ' '; cursor++) startYStr += serialized[cursor];
+
+    std::string endXStr = "";
+    for(cursor++; serialized.at(cursor) != ' '; cursor++) endXStr += serialized[cursor];
+
+    std::string endYStr = "";
+    for(cursor++; serialized.at(cursor) != ' '; cursor++) endYStr += serialized[cursor];
+
+    std::string scaleStr = "";
+    for(cursor++; serialized.at(cursor) != ' '; cursor++) scaleStr += serialized[cursor];
+
+    std::string redStr = "";
+    for(cursor++; serialized.at(cursor) != ' '; cursor++) redStr += serialized[cursor];
+
+    std::string greenStr = "";
+    for(cursor++; serialized.at(cursor) != ' '; cursor++) greenStr += serialized[cursor];
+
+    std::string blueStr = "";
+    for(cursor++; serialized.at(cursor) != ' '; cursor++) blueStr += serialized[cursor];
+
+    std::string alphaStr = "";
+    for(cursor++; serialized.at(cursor) != ' '; cursor++) alphaStr += serialized[cursor];
+
+    std::string thicknessStr = "";
+    for(cursor++; serialized.at(cursor) != ' '; cursor++) thicknessStr += serialized[cursor];
+
+    std::string styleStr = "";
+    for(cursor++; serialized.at(cursor) != ' '; cursor++) styleStr += serialized[cursor];
+
+    AbstractShape* newShape = nullptr;
+    if(shapeType == "Ellipse") {
+        newShape = new Ellipse();
+    } else if(shapeType == "Rectangle") {
+        newShape = new Rectangle();
+    } else if(shapeType == "Line") {
+        newShape = new Line();
+    }
+
+    if(newShape == nullptr) return;
+
+    newShape->setStartPoint(QPointF(std::stod(startXStr), std::stod(startYStr)));
+    newShape->setEndPoint(QPointF(std::stod(endXStr), std::stod(endYStr)));
+    newShape->setScale(std::stod(scaleStr));
+    newShape->setColor(QColor(std::stod(redStr), std::stod(greenStr), std::stod(blueStr), std::stod(alphaStr)));
+    newShape->setThickness(std::stod(thicknessStr));
+    newShape->setStyle(static_cast<Qt::PenStyle>(std::stod(styleStr)));
+    _shapes.push_back(newShape);
+    update();
 }
 
 void Canvas::removeShape(AbstractShape* shape) {

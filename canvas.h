@@ -22,7 +22,7 @@ public:
 
     Canvas(QWidget *parent = nullptr);
 
-    void deserialize();
+    void deserialize(std::string serialized);
 
     std::string serialize();
 

@@ -29,6 +29,12 @@ std::string AbstractShape::serialize() {
     result += std::to_string(_endPoint.x()) + " ";
     result += std::to_string(_endPoint.y()) + " ";
     result += std::to_string(_scale) + " ";
+    result += std::to_string(_pen.color().red()) + " ";
+    result += std::to_string(_pen.color().green()) + " ";
+    result += std::to_string(_pen.color().blue()) + " ";
+    result += std::to_string(_pen.color().alpha()) + " ";
+    result += std::to_string(_pen.width()) + " ";
+    result += std::to_string(_pen.style()) + " ";
     return result;
 }
 
