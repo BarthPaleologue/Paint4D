@@ -62,6 +62,16 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(shapeMenu->getActionGroup(), SIGNAL(triggered(QAction*)), canvas, SLOT(setShape(QAction*)));
 
+    connect(findChild<QWidget*>("scaleSlider"), SIGNAL(valueChanged(int)), canvas, SLOT(setSelectedScale(int)));
+
+    connect(findChild<QWidget*>("redSlider"), SIGNAL(valueChanged(int)), canvas, SLOT(setRed(int)));
+
+    connect(findChild<QWidget*>("greenSlider"), SIGNAL(valueChanged(int)), canvas, SLOT(setGreen(int)));
+
+    connect(findChild<QWidget*>("blueSlider"), SIGNAL(valueChanged(int)), canvas, SLOT(setBlue(int)));
+
+    connect(findChild<QWidget*>("alphaSlider"), SIGNAL(valueChanged(int)), canvas, SLOT(setAlpha(int)));
+
     setCentralWidget(centralWidget);
 }
 

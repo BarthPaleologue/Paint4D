@@ -10,5 +10,7 @@ Line::Line(QPen pen): AbstractShape(pen) {
 
 void Line::draw(QPainter* painter) {
     AbstractShape::draw(painter);
-    painter->drawLine(_startPoint.x(), _startPoint.y(), _endPoint.x(), _endPoint.y());
+    QPointF startPoint = getStartPoint();
+    QPointF endPoint = getEndPoint();
+    painter->drawLine(startPoint.x(), startPoint.y(), endPoint.x(), endPoint.y());
 }

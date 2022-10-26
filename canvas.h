@@ -20,6 +20,8 @@ public:
 
     Canvas(QWidget *parent = nullptr);
 
+    void setSelectedShapesColorToCurrentPenColor();
+
     void mousePressEvent(QMouseEvent* e);
 
     void mouseReleaseEvent(QMouseEvent* e);
@@ -41,6 +43,16 @@ public slots:
     inline void update() { QWidget::update(); };
 
     void setColor(QAction* action);
+
+    void setRed(int red);
+
+    void setGreen(int green);
+
+    void setBlue(int blue);
+
+    void setAlpha(int alpha);
+
+    void setSelectedScale(int scale);
 
     void setThickness(QAction* action);
 

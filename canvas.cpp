@@ -131,10 +131,38 @@ void Canvas::keyReleaseEvent(QKeyEvent *e) {
     }
 }
 
+void Canvas::setSelectedShapesColorToCurrentPenColor() {
+    for(auto _selectedShape : _selectedShapes) _selectedShape->setColor(_pen.color());
+    update();
+}
+
 void Canvas::setColor(QAction* action) {
-    QColor newColor = QColor(action->data().toString());
-    _pen.setColor(newColor);
-    for(auto _selectedShape : _selectedShapes) _selectedShape->setColor(newColor);
+    _pen.setColor(QColor(action->data().toString()));
+    setSelectedShapesColorToCurrentPenColor();
+}
+
+void Canvas::setRed(int red) {
+    _pen.setColor(QColor(red, _pen.color().green(), _pen.color().blue(), _pen.color().alpha()));
+    setSelectedShapesColorToCurrentPenColor();
+}
+
+void Canvas::setGreen(int green) {
+    _pen.setColor(QColor(_pen.color().red(), green, _pen.color().blue(), _pen.color().alpha()));
+    setSelectedShapesColorToCurrentPenColor();
+}
+
+void Canvas::setBlue(int blue) {
+    _pen.setColor(QColor(_pen.color().red(), _pen.color().green(), blue, _pen.color().alpha()));
+    setSelectedShapesColorToCurrentPenColor();
+}
+
+void Canvas::setAlpha(int alpha) {
+    _pen.setColor(QColor(_pen.color().red(), _pen.color().green(), _pen.color().blue(), alpha));
+    setSelectedShapesColorToCurrentPenColor();
+}
+
+void Canvas::setSelectedScale(int scale) {
+    for(auto selectedShape: _selectedShapes) selectedShape->setScale((float)scale / 10.0f);
     update();
 }
 

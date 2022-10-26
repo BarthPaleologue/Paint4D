@@ -19,7 +19,11 @@ public:
 
     inline void setStartPoint(QPointF point) { _startPoint = point; };
 
+    inline QPointF getStartPoint() { return (_startPoint - getCenter()) * _scale + getCenter(); };
+
     inline void setEndPoint(QPointF point) { _endPoint = point; };
+
+    inline QPointF getEndPoint() { return (_endPoint - getCenter()) * _scale + getCenter(); };
 
     void translate(float dx, float dy);
 
@@ -31,15 +35,22 @@ public:
 
     inline void setStyle(Qt::PenStyle style) { _pen.setStyle(style); };
 
-    inline QRectF getBoundingRect() { return QRectF(_startPoint, _endPoint); };
+    inline void setScale(float scale) { _scale = scale; };
+
+    inline QRectF getBoundingRect() { return QRectF(getStartPoint(), getEndPoint()); };
+
+    inline QPointF getCenter() { return (_startPoint + _endPoint) / 2.0; };
 
     inline virtual void draw(QPainter *painter) { painter->setPen(_pen); };
 
     virtual ~AbstractShape();
 protected:
-    QPointF _startPoint = QPointF(0, 0);
     QPointF _endPoint = QPointF(0, 0);
     QPen _pen;
+    float _scale = 1.0f;
+
+private:
+    QPointF _startPoint = QPointF(0, 0);
 };
 
 #endif // ABSTRACTSHAPE_H
