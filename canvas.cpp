@@ -113,8 +113,8 @@ void Canvas::paintEvent(QPaintEvent *e) {
 }
 
 void Canvas::mousePressEvent(QMouseEvent *e) {
-    mouseLastX = e->position().x();
-    mouseLastY = e->position().y();
+    mouseLastX = e->pos().x();
+    mouseLastY = e->pos().y();
 
     if(isSelecting) {
         for(auto shape : _shapes) {
@@ -151,8 +151,8 @@ void Canvas::mousePressEvent(QMouseEvent *e) {
             break;
     }
 
-    newShape->setStartPoint(e->position());
-    newShape->setEndPoint(e->position());
+    newShape->setStartPoint(e->pos());
+    newShape->setEndPoint(e->pos());
 
     _shapes.push_back(newShape);
 
@@ -170,17 +170,17 @@ void Canvas::mouseReleaseEvent(QMouseEvent *e) {
 
 void Canvas::mouseMoveEvent(QMouseEvent *e) {
     for(auto _selectedShape : _selectedShapes) {
-        _selectedShape->translate(e->position().x() - mouseLastX, e->position().y() - mouseLastY);
+        _selectedShape->translate(e->pos().x() - mouseLastX, e->pos().y() - mouseLastY);
     }
     if(_selectedShapes.size() > 0) update();
 
     if(isDrawing) {
-        _shapes[_shapes.size() - 1]->setEndPoint(e->position());
+        _shapes[_shapes.size() - 1]->setEndPoint(e->pos());
         update();
     }
 
-    mouseLastX = e->position().x();
-    mouseLastY = e->position().y();
+    mouseLastX = e->pos().x();
+    mouseLastY = e->pos().y();
 }
 
 void Canvas::keyPressEvent(QKeyEvent *e) {

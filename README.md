@@ -2,7 +2,7 @@
 
 Author: Barthélemy Paléologue
 
-Paint4D is the result of the Qt TP at Telecom Paris.
+Paint4D is the result of the Qt TP at Telecom Paris. It has been tested with Qt with 5.15.2.
 
 The repository is publically available at <a herf="https://github.com/BarthPaleologue/Paint4D">https://github.com/BarthPaleologue/Paint4D</a>
 

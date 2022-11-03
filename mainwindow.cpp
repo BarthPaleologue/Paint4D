@@ -1,4 +1,5 @@
 #include <QMessageBox>
+#include <QTextStream>
 #include <iostream>
 
 #include "mainwindow.h"

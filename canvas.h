@@ -8,6 +8,7 @@
 #include <QWheelEvent>
 #include <QPaintEvent>
 #include <QObject>
+#include <QAction>
 #include <vector>
 #include <string>
 
